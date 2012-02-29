@@ -29,6 +29,16 @@ describe "User pages" do
         expect { click_button "Sign up" }.not_to change(User, :count)
       end
       it { should have_selector('div', content: "Name can't be blank") }
+      
+    end
+    
+    describe "error messages" do
+      before { click_button "Sign up" }
+
+      let(:error) { 'errors prohibited this user from being saved' }
+
+      it { should have_selector('title', text: 'Sign up') }
+      it { should have_content(error) }
     end
         
     describe "with valid information" do
