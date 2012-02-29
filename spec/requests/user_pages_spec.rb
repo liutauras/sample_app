@@ -22,19 +22,15 @@ describe "User pages" do
   
   describe "signup" do
 
-    before { visit signup_path }
+    before(:each) { visit signup_path }
 
     describe "with invalid information" do
       it "should not create a user" do
         expect { click_button "Sign up" }.not_to change(User, :count)
       end
       it { should have_selector('div', content: "Name can't be blank") }
-        
-      end
     end
-
-    before { visit signup_path }
-
+        
     describe "with valid information" do
       before do
         fill_in "Name",         with: "Example User"
@@ -42,10 +38,33 @@ describe "User pages" do
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
+      
+      describe "after saving the user" do
+        before { click_button "Sign up" }
+        let(:user) { User.find_by_email('user@example.com') }
 
-      it "should create a user" do
-        expect { click_button "Sign up" }.to change(User, :count).by(1)
+        it { should have_selector('title', text: user.name) }
+        it { should have_selector('div.flash.success', text: 'Welcome') }
       end
+      
+      
+      
+      # before { click_button "Sign up" }
+    
+      # it "should create a user" do
+        # expect { click_button "Sign up" }.to change(User, :count).by(1)
+      # end
+      # it "should render newly create user page" do
+        # pending
+        # # expect { response.should render_template('users/show1231') }
+        # expect { page.should redirect_to("where ?? ") }
+      # end
+      # it "should show flash message" do
+      # describe "aaaaaaaa" do
+      
+        
+      # end
+    end
   end
 end
 
