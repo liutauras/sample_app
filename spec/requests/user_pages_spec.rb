@@ -56,24 +56,6 @@ describe "User pages" do
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.flash.success', text: 'Welcome') }
       end
-      
-      
-      
-      # before { click_button "Sign up" }
-    
-      # it "should create a user" do
-        # expect { click_button "Sign up" }.to change(User, :count).by(1)
-      # end
-      # it "should render newly create user page" do
-        # pending
-        # # expect { response.should render_template('users/show1231') }
-        # expect { page.should redirect_to("where ?? ") }
-      # end
-      # it "should show flash message" do
-      # describe "aaaaaaaa" do
-      
-        
-      # end
     end
   end
 end
